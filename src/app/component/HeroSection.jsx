@@ -7,55 +7,54 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="lg:py-16">
-      <div className="grid grid-cols-1 sm:grid-cols-12">
+    <section className="lg:py-20 px-4 sm:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-12 items-center">
         {/* Text Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
+          className="col-span-8 text-center sm:text-left"
         >
-          <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-              Hello, I&apos;m{" "}
+          <h1 className="text-white mb-6 text-4xl sm:text-5xl lg:text-7xl leading-tight font-extrabold">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+              Hello, I&apos;m
             </span>
             <br />
-            <TypeAnimation
-              sequence={[
-                "Joshua",
-                1000,
-                "Web Developer",
-                1000,
-                "Mobile Developer",
-                1000,
-                "UI/UX Designer",
-                1000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient">
+              <TypeAnimation
+                sequence={[
+                  "Joshua",
+                  1000,
+                  "Web Developer",
+                  1000,
+                  "Mobile Developer",
+                  1000,
+                  "UI/UX Designer",
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            </span>
           </h1>
 
-          <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
+          <p className="text-[#ADB7BE] mt-4 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
             I am a passionate developer with a knack for creating beautiful and
-            functional web applications. I love to learn new technologies and
-            improve my skills every day.
+            functional web applications. I enjoy learning new technologies and
+            pushing the boundaries of user experience.
           </p>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:items-center">
             <Link
               href="/#contact"
-              className="px-6 py-3 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-200 text-white text-center"
+              className="px-6 py-3 w-full sm:w-auto rounded-full bg-gradient-to-br from-purple-600 to-pink-500 hover:opacity-90 text-white font-medium shadow-md transition-all"
             >
               Hire Me
             </Link>
-            <Link
-              href="/"
-              className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white text-center"
-            >
-              <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+            <Link href="/" className="w-full sm:w-auto">
+              <span className="block px-6 py-3 rounded-full border border-gray-700 bg-[#121212] hover:bg-gray-900 text-white transition-all font-medium shadow-md">
                 Download CV
               </span>
             </Link>
@@ -64,17 +63,18 @@ const HeroSection = () => {
 
         {/* Image Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-4 place-self-center mt-4 lg:mt-0"
+          className="col-span-4 mt-10 sm:mt-0 flex justify-center"
         >
-          <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden">
+          <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-lg">
             <Image
               src="/images/code.jpg"
               alt="hero image"
-              className="object-cover w-full h-full"
+              className="object-cover"
               fill
+              priority
             />
           </div>
         </motion.div>
