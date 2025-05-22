@@ -48,7 +48,7 @@ const EmailSection = () => {
         </p>
         <div className="socials flex flex-row gap-2">
           <a
-            href="https://github.com/joshua0922-a/personal_website"
+            href="https://github.com/joshua0922-a"
             target="_blank"
             rel="noopener noreferrer"
           >
