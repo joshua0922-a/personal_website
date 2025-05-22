@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.FROM_EMAIL;
 
-export async function POST(req, res) {
-  const { email, subject, message } = await req.json();
-  console.log(email, subject, message);
+export async function POST(request) {
   try {
+    const { email, subject, message } = await request.json();
+
+    console.log(email, subject, message);
+
     const data = await resend.emails.send({
       from: fromEmail,
       to: [fromEmail, email],
@@ -21,8 +24,10 @@ export async function POST(req, res) {
         </>
       ),
     });
-    return NextResponse.json(data);
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error });
+    console.error("Email send error:", error);
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
   }
 }
