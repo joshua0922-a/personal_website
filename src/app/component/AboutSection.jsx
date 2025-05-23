@@ -37,6 +37,18 @@ const TAB_DATA = [
       </ul>
     ),
   },
+    {
+    title: "Work Experience",
+    id: "work-experience",
+    content: (
+      <ul className="list-disc pl-2">
+        <li>Student Lab Assistant</li>
+        <li>Intern at TechnoPH</li>
+        <li>Line Chef</li>
+        <li>Mechanic</li>
+      </ul>
+    ),
+  },
 ];
 
 const AboutSection = () => {
@@ -86,6 +98,13 @@ const AboutSection = () => {
               active={tab === "certifications"}
             >
               Certifications
+            </TabButton>
+
+            <TabButton
+              selectTab={() => handleTabChange("work-experience")}
+              active={tab === "work-experience"}
+            >
+              Work Experience
             </TabButton>
           </div>
           <div className="mt-8 transition-opacity duration-300 ease-in" key={tab}>

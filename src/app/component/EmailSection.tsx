@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import GithubIcon from "./github-icon.svg";
 import LinkedinIcon from "./linkedin-icon.svg";
 import Image from "next/image";
@@ -10,13 +11,25 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 const EmailSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [success, setSuccess] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaVerified(!!token);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!captchaVerified) {
+      alert("Please verify the CAPTCHA before submitting.");
+      return;
+    }
+
     try {
       await addDoc(collection(db, "inquiries"), {
         ...form,
@@ -24,6 +37,8 @@ const EmailSection = () => {
       });
       setSuccess(true);
       setForm({ name: "", email: "", message: "" });
+      recaptchaRef.current?.reset();  // Reset captcha after successful submission
+      setCaptchaVerified(false);
     } catch (err) {
       console.error("Error sending message:", err);
     }
@@ -62,7 +77,7 @@ const EmailSection = () => {
           </div>
         </div>
 
-        {/* Contact Form aligned right, no background */}
+        {/* Contact Form */}
         <form
           onSubmit={handleSubmit}
           className="max-w-md w-full p-6 rounded-lg shadow-md space-y-4 ml-auto"
@@ -94,12 +109,21 @@ const EmailSection = () => {
             rows={5}
             required
           />
+
+          {/* reCAPTCHA component */}
+          <ReCAPTCHA
+            sitekey="6LfnM0YrAAAAAPi35RTk38FEbrwwedMDMAQZSXGH" // <-- Replace this with your actual site key from Google reCAPTCHA
+            onChange={handleCaptchaChange}
+            ref={recaptchaRef}
+          />
+
           <button
             type="submit"
             className="bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-800"
           >
             Send Message
           </button>
+
           {success && (
             <p className="text-green-600 text-sm pt-2">Message sent successfully!</p>
           )}
