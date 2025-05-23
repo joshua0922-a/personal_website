@@ -11,18 +11,19 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 const EmailSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const [captchaVerified, setCaptchaVerified] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleCaptchaChange = (token: string | null) => {
+  const handleCaptchaChange = (token) => {
     setCaptchaVerified(!!token);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!captchaVerified) {
@@ -36,11 +37,14 @@ const EmailSection = () => {
         createdAt: serverTimestamp(),
       });
       setSuccess(true);
+      setError(null);
       setForm({ name: "", email: "", message: "" });
-      recaptchaRef.current?.reset();  // Reset captcha after successful submission
+      recaptchaRef.current?.reset();
       setCaptchaVerified(false);
     } catch (err) {
       console.error("Error sending message:", err);
+      setError("Failed to send message. Please try again later.");
+      setSuccess(false);
     }
   };
 
@@ -112,7 +116,7 @@ const EmailSection = () => {
 
           {/* reCAPTCHA component */}
           <ReCAPTCHA
-            sitekey="6LfnM0YrAAAAAPi35RTk38FEbrwwedMDMAQZSXGH" // <-- Replace this with your actual site key from Google reCAPTCHA
+            sitekey="6LcbPkYrAAAAAMCFAa0LX2TH6YKx2Z4BAyqFFtaa" // Replace with your actual Google reCAPTCHA site key
             onChange={handleCaptchaChange}
             ref={recaptchaRef}
           />
@@ -126,6 +130,9 @@ const EmailSection = () => {
 
           {success && (
             <p className="text-green-600 text-sm pt-2">Message sent successfully!</p>
+          )}
+          {error && (
+            <p className="text-red-600 text-sm pt-2">{error}</p>
           )}
         </form>
       </div>

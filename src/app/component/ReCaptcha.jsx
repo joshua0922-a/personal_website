@@ -22,7 +22,7 @@ const RecaptchaV2Example = () => {
     <div>
       <ReCAPTCHA
         ref={recaptchaRef}
-        sitekey="YOUR_SITE_KEY"  // Replace with your actual site key
+        sitekey="6LfnM0YrAAAAAPi35RTk38FEbrwwedMDMAQZSXGH"  // Replace with your actual site key
         onChange={handleCaptchaChange}
       />
       <button onClick={handleSubmit}>Submit</button>
