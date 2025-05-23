@@ -53,7 +53,8 @@ const HeroSection = () => {
             >
               Hire Me
             </Link>
-            <Link href="/" className="w-full sm:w-auto">
+            <Link href="https://drive.google.com/file/d/1H-w_u-WRUQoV3bIprGrolQvOlgJxH7rB/view?usp=sharing" className="w-full sm:w-auto" 
+            target="_blank">
               <span className="block px-6 py-3 rounded-full border border-gray-400 bg-gray-100 hover:bg-gray-200 text-gray-900 transition-all font-medium shadow-md">
                 Download CV
               </span>
