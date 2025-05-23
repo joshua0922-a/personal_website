@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import GithubIcon from "./github-icon.svg";
 import LinkedinIcon from "./linkedin-icon.svg";
@@ -18,9 +19,7 @@ const EmailSection = () => {
 
     const response = await fetch("/api/send", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
 
@@ -37,20 +36,23 @@ const EmailSection = () => {
     >
       {/* Background Gradient */}
       <div className="absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2 z-0">
-        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 blur-lg"></div>
+        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-300 to-transparent rounded-full h-80 w-80 blur-lg"></div>
       </div>
 
       {/* Contact Info */}
-      <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2">Let&apos;s Connect</h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
-          I&apos;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+      <div className="z-10 px-4 md:px-0">
+        <h5 className="text-xl font-bold text-black my-2">Let&apos;s Connect</h5>
+        <p className="text-gray-700 mb-4 max-w-md">
+          I&apos;m currently looking for new opportunities. Whether you have a
+          question or just want to say hi, I&apos;ll try my best to get back to
+          you!
         </p>
         <div className="socials flex flex-row gap-2">
           <a
             href="https://github.com/joshua0922-a"
             target="_blank"
             rel="noopener noreferrer"
+            className="filter brightness-50 hover:brightness-75 transition"
           >
             <Image src={GithubIcon} alt="Github Icon" />
           </a>
@@ -58,6 +60,7 @@ const EmailSection = () => {
             href="https://www.linkedin.com/in/joshua-patriarca-b191b0223/"
             target="_blank"
             rel="noopener noreferrer"
+            className="filter brightness-50 hover:brightness-75 transition"
           >
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
           </a>
@@ -65,17 +68,15 @@ const EmailSection = () => {
       </div>
 
       {/* Email Form */}
-      <div>
+      <div className="px-4 md:px-0">
         {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
-          </p>
+          <p className="text-green-600 text-sm mt-2">Email sent successfully!</p>
         ) : (
           <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
+                className="text-black block mb-2 text-sm font-medium"
               >
                 Your email
               </label>
@@ -85,14 +86,14 @@ const EmailSection = () => {
                 id="email"
                 required
                 placeholder="jacob@google.com"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-gray-100 border border-gray-300 placeholder-gray-500 text-black text-sm rounded-lg block w-full p-2.5"
               />
             </div>
 
             <div className="mb-6">
               <label
                 htmlFor="subject"
-                className="text-white block mb-2 text-sm font-medium"
+                className="text-black block mb-2 text-sm font-medium"
               >
                 Subject
               </label>
@@ -102,14 +103,14 @@ const EmailSection = () => {
                 id="subject"
                 required
                 placeholder="Just saying hi"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-gray-100 border border-gray-300 placeholder-gray-500 text-black text-sm rounded-lg block w-full p-2.5"
               />
             </div>
 
             <div className="mb-6">
               <label
                 htmlFor="message"
-                className="text-white block mb-2 text-sm font-medium"
+                className="text-black block mb-2 text-sm font-medium"
               >
                 Message
               </label>
@@ -118,13 +119,13 @@ const EmailSection = () => {
                 id="message"
                 required
                 placeholder="Let's talk about..."
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-gray-100 border border-gray-300 placeholder-gray-500 text-black text-sm rounded-lg block w-full p-2.5"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-purple-500 hover:bg-red-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-purple-500 hover:bg-purple-700 text-white font-medium py-2.5 px-5 rounded-lg w-full"
             >
               Send Message
             </button>

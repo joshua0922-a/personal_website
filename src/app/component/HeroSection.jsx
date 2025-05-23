@@ -16,12 +16,12 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="col-span-8 text-center sm:text-left"
         >
-          <h1 className="text-white mb-6 text-4xl sm:text-5xl lg:text-7xl leading-tight font-extrabold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+          <h1 className="mb-6 text-4xl sm:text-5xl lg:text-7xl leading-tight font-extrabold text-black">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-700">
               Hello, I&apos;m
             </span>
             <br />
-            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient">
+            <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black">
               <TypeAnimation
                 sequence={[
                   "Joshua",
@@ -40,7 +40,7 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-[#ADB7BE] mt-4 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
+          <p className="text-gray-700 mt-4 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
             I am a passionate developer with a knack for creating beautiful and
             functional web applications. I enjoy learning new technologies and
             pushing the boundaries of user experience.
@@ -54,7 +54,7 @@ const HeroSection = () => {
               Hire Me
             </Link>
             <Link href="/" className="w-full sm:w-auto">
-              <span className="block px-6 py-3 rounded-full border border-gray-700 bg-[#121212] hover:bg-gray-900 text-white transition-all font-medium shadow-md">
+              <span className="block px-6 py-3 rounded-full border border-gray-400 bg-gray-100 hover:bg-gray-200 text-gray-900 transition-all font-medium shadow-md">
                 Download CV
               </span>
             </Link>
@@ -68,7 +68,7 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="col-span-4 mt-10 sm:mt-0 flex justify-center"
         >
-          <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-lg">
+          <div className="rounded-full bg-gray-100 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative overflow-hidden shadow-lg">
             <Image
               src="/images/code.jpg"
               alt="hero image"
