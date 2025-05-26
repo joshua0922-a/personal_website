@@ -15,32 +15,38 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-black bg-white" id="about">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12 px-4 sm:px-6 md:px-8 xl:px-16">
-        <div className="w-full flex justify-center">
+    <section id="about" className="bg-white py-16 px-6 sm:px-10 md:px-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Left - Image */}
+        <div className="flex justify-center">
           <Image
             src="/images/about-image.png"
-            width={500}
-            height={500}
-            alt="Illustration representing about section"
-            className="w-full h-auto max-w-sm md:max-w-md lg:max-w-lg"
+            width={480}
+            height={480}
+            alt="About Me Illustration"
+            className="rounded-xl shadow-lg w-full max-w-sm md:max-w-md lg:max-w-lg transition-transform hover:scale-105"
           />
         </div>
 
-        <div className="text-left flex flex-col h-full">
+        {/* Right - Content */}
+        <div className="space-y-6">
           <div className="bg-gray-100 p-6 rounded-xl shadow-md">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-800">
-              I am a full stack web developer with a passion for creating
-              interactive and responsive web applications. I have experience
-              working with JavaScript, React, Node.js, SQLExpress, MongoDB,
-              CSS, and Git. I am a quick learner and always looking to expand
-              my knowledge and skill set. I'm a team player and excited to
-              collaborate on meaningful projects.
+            <h2 className="text-4xl font-bold mb-3 text-black">About Me</h2>
+            <p className="text-black text-lg leading-relaxed">
+              I'm a full stack web developer passionate about crafting sleek,
+              efficient, and responsive web applications. I specialize in
+              JavaScript, React, Node.js, MongoDB, SQLExpress, Git, and modern
+              UI/UX practices.
+              <br />
+              <br />
+              I'm a fast learner and love solving real-world problems with clean
+              code. Whether working solo or with a team, I thrive on building
+              impactful digital experiences.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4 mt-6">
+          {/* Tab Buttons */}
+          <div className="flex flex-wrap gap-4">
             {TAB_DATA.map((tabItem) => (
               <TabButton
                 key={tabItem.id}
@@ -52,12 +58,13 @@ const AboutSection = () => {
             ))}
           </div>
 
+          {/* Tab Content */}
           <div
-            className="mt-6 transition-opacity duration-300 ease-in bg-gray-50 p-4 rounded-lg shadow-sm"
             key={tab}
+            className="bg-white border border-gray-200 rounded-lg shadow-sm p-5 transition-all duration-300 ease-in"
           >
             {TAB_DATA.find((t) => t.id === tab)?.content ?? (
-              <p>No content available.</p>
+              <p className="text-black">No content available.</p>
             )}
           </div>
         </div>
