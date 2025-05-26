@@ -33,41 +33,54 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4 p-4">
-      <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
-      <input
-        name="name"
-        type="text"
-        placeholder="Your Name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-        className="w-full p-2 border rounded"
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Your Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-        className="w-full p-2 border rounded"
-      />
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-3xl mx-auto p-6 space-y-6 bg-white shadow-md rounded"
+    >
+      <h2 className="text-3xl font-bold mb-6 text-center">Contact Me</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input
+          name="name"
+          type="text"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
       <textarea
         name="message"
         placeholder="Your Message"
         value={formData.message}
         onChange={handleChange}
         required
-        className="w-full p-2 border rounded h-32"
+        className="w-full p-3 border border-gray-300 rounded h-40 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
-      <button
-        type="submit"
-        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-      >
-        Send
-      </button>
-      {status && <p className="text-sm mt-2">{status}</p>}
+
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="bg-black text-white px-8 py-3 rounded hover:bg-gray-800 transition"
+        >
+          Send
+        </button>
+      </div>
+
+      {status && (
+        <p className="text-center text-sm mt-2 text-gray-700">{status}</p>
+      )}
     </form>
   );
 };
