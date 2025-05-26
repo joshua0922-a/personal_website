@@ -2,7 +2,7 @@
 import React, { useTransition, useState } from "react";
 import Image from "next/image";
 import TabButton from "./TabButton";
-import TAB_DATA from "./tabdata"; // ✅ using external data file
+import TAB_DATA from "./tabdata";
 
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
@@ -28,15 +28,17 @@ const AboutSection = () => {
         </div>
 
         <div className="text-left flex flex-col h-full">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-700">
-            I am a full stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Node.js, SQLExpress, MongoDB,
-            CSS, and Git. I am a quick learner and always looking to expand
-            my knowledge and skill set. I'm a team player and excited to
-            collaborate on meaningful projects.
-          </p>
+          <div className="bg-gray-100 p-6 rounded-xl shadow-md">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Me</h2>
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-800">
+              I am a full stack web developer with a passion for creating
+              interactive and responsive web applications. I have experience
+              working with JavaScript, React, Node.js, SQLExpress, MongoDB,
+              CSS, and Git. I am a quick learner and always looking to expand
+              my knowledge and skill set. I'm a team player and excited to
+              collaborate on meaningful projects.
+            </p>
+          </div>
 
           <div className="flex flex-wrap gap-4 mt-6">
             {TAB_DATA.map((tabItem) => (
@@ -51,7 +53,7 @@ const AboutSection = () => {
           </div>
 
           <div
-            className="mt-6 transition-opacity duration-300 ease-in"
+            className="mt-6 transition-opacity duration-300 ease-in bg-gray-50 p-4 rounded-lg shadow-sm"
             key={tab}
           >
             {TAB_DATA.find((t) => t.id === tab)?.content ?? (
