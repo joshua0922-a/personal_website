@@ -4,10 +4,11 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-// 🔐 Use environment variables (recommended)
+// 🔐 Load email credentials from environment config
 const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
 
+// 📩 Nodemailer setup using Gmail
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -16,6 +17,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// 📬 Firestore trigger when new contact is added
 exports.sendContactEmail = functions.firestore
   .document("contacts/{docId}")
   .onCreate((snap, context) => {
@@ -23,7 +25,7 @@ exports.sendContactEmail = functions.firestore
 
     const mailOptions = {
       from: `Portfolio Contact Form <${gmailEmail}>`,
-      to: gmailEmail, // You receive the email
+      to: gmailEmail, // Sends to your Gmail
       subject: `📬 New Message from ${data.name}`,
       text: `
 You received a new message from your portfolio contact form:
@@ -35,6 +37,7 @@ ${data.message}
       `,
     };
 
+    // ✅ Send the email
     return transporter.sendMail(mailOptions)
       .then(() => console.log("📨 Email sent successfully"))
       .catch((error) => console.error("❌ Error sending email:", error));
